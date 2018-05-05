@@ -53,6 +53,7 @@ public class MovementClass {
 				+ mainWindow.simulationPanel.testCharge.getX());
 
 		mainWindow.simulationPanel.repaint();
+		dt+=500;
 		
 		if(mainWindow.simulationPanel.testCharge.getX()<(-100) || mainWindow.simulationPanel.testCharge.getX()>(mainWindow.simulationPanel.getWidth()+100)){
 			stopSimulation();
@@ -87,12 +88,15 @@ public class MovementClass {
 		public void run() {
 			Ax();
 			Ay();
+			mainWindow.chartsPanel.createCharts();
+			//System.out.println(mainWindow.simulationPanel.testCharge.getX()+" "+ mainWindow.simulationPanel.testCharge.getVx());
 
 		}
 
 	}
 
 	public void startSimulation() {
+		dt=500;
 
 		task = new MyTask();
 

@@ -18,13 +18,13 @@ public class MauseListener implements MouseListener , MouseMotionListener {
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		if(mainWindow.optionPanel.whichCharge==mainWindow.optionPanel.addTestChargeString && mainWindow.optionPanel.speedTestCharge != null) {
+		/*if(mainWindow.optionPanel.whichCharge==mainWindow.optionPanel.addTestChargeString && mainWindow.optionPanel.speedTestCharge != null) {
 			simulationPanel.testCharge.setVx((e.getX()-simulationPanel.testCharge.getX())*0.00007*mainWindow.optionPanel.speedTestCharge.getValue());
 			simulationPanel.testCharge.setVy((e.getY()-simulationPanel.testCharge.getY())*0.00007*mainWindow.optionPanel.speedTestCharge.getValue());
 			System.out.println("Vx "+simulationPanel.testCharge.getVx());
 			System.out.println("Vy "+simulationPanel.testCharge.getVy());
 			
-		}
+		}*/
 		
 		
 	}
@@ -63,6 +63,13 @@ public class MauseListener implements MouseListener , MouseMotionListener {
 			simulationPanel.repaint();
 			
 			}
+		if(mainWindow.optionPanel.whichCharge==mainWindow.optionPanel.addTestChargeString && mainWindow.optionPanel.speedTestCharge != null) {
+			simulationPanel.testCharge.setVx((e.getX()-simulationPanel.testCharge.getX())*0.00007*mainWindow.optionPanel.speedTestCharge.getValue());
+			simulationPanel.testCharge.setVy((e.getY()-simulationPanel.testCharge.getY())*0.00007*mainWindow.optionPanel.speedTestCharge.getValue());
+			System.out.println("Vx "+simulationPanel.testCharge.getVx());
+			System.out.println("Vy "+simulationPanel.testCharge.getVy());
+			
+		}
 		
 	}
 
