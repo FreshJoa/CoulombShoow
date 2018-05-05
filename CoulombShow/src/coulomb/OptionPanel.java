@@ -10,6 +10,9 @@ import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -119,6 +122,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		newSimulationButton.addActionListener(this);
 		addStaticCharges.addActionListener(this);
 		addTestCharge.addActionListener(this);
+		drawEquipotential.addActionListener(this);
 
 	}
 
@@ -153,14 +157,18 @@ public class OptionPanel extends JPanel implements ActionListener {
 				mainWindow.movementClass.stopSimulation();
 				mainWindow.simulationPanel.testCharge = null;
 				mainWindow.simulationPanel.staticChargeList.clear();
+				mainWindow.drawEquipotential.pixelList.clear();
 				mainWindow.simulationPanel.repaint();
 				mainWindow.chartsPanel.seriesVx.clear();
-				
+				mainWindow.chartsPanel.seriesVy.clear();
+				mainWindow.chartsPanel.seriesVt.clear();
+				startSimulationBoolean=false;
 
 			}
-
+			startSimulationBoolean=false;
 			mainWindow.simulationPanel.testCharge = null;
 			mainWindow.simulationPanel.staticChargeList.clear();
+			mainWindow.drawEquipotential.pixelList.clear();
 			mainWindow.simulationPanel.repaint();
 
 		}
@@ -171,6 +179,12 @@ public class OptionPanel extends JPanel implements ActionListener {
 		if (e.getSource() == addTestCharge) {
 			whichCharge = addTestChargeString;
 
+		}
+		if (e.getSource() == drawEquipotential) {
+			ExecutorService exec = Executors.newFixedThreadPool(1);
+			exec.execute(mainWindow.drawEquipotential);
+
+			
 		}
 
 	}

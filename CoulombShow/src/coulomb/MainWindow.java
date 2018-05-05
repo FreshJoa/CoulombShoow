@@ -14,8 +14,11 @@ public class MainWindow extends JFrame {
 	MauseListener mauseListener;
 	MovementClass movementClass;
 	ChartsPanel chartsPanel;
+	DrawEquipotential drawEquipotential;
+	
 	JPanel firstPanel; // panel z simulationPanel i OptionsPanel( JTabbedPane)
 	JTabbedPane tabbedPane;
+	
 
 	public MainWindow() throws HeadlessException {
 		optionPanel=new OptionPanel(this);
@@ -23,6 +26,8 @@ public class MainWindow extends JFrame {
 		mauseListener=new MauseListener(this, simulationPanel);
 		movementClass=new MovementClass(this);
 		chartsPanel=new ChartsPanel(this);
+		drawEquipotential=new DrawEquipotential(this);
+		
 		firstPanel=new JPanel();
 		tabbedPane=new JTabbedPane();
 		

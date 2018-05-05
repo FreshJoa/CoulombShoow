@@ -53,6 +53,11 @@ public class SimulationPanel extends JPanel {
 		if (testCharge != null) {
 			testCharge.draw(g2d);
 		}
+		if(mainWindow.drawEquipotential.pixelList !=null) {
+			for(int i=0; i<mainWindow.drawEquipotential.pixelList.size(); i++) {
+				mainWindow.drawEquipotential.pixelList.get(i).draw(g2d);
+			}
+		}
 	}
 
 }

@@ -89,7 +89,7 @@ public class ChartsPanel extends JPanel  {
 		this.add(chartPanelVy);
 		this.add(chartPanelVt);
 		this.revalidate();
-		//System.out.println(mainWindow.simulationPanel.testCharge.getX()+" "+ mainWindow.simulationPanel.testCharge.getVx());
+		
 		
 	}
 
