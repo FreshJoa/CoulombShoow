@@ -51,33 +51,42 @@ public class OptionPanel extends JPanel implements ActionListener {
 	String whichCharge = "";
 
 	boolean startSimulationBoolean = false;
+	boolean drawEquipotentialBoolean=false;
 
 	public OptionPanel(MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
-		startButton = new JButton("Start");
+		/*startButton = new JButton("Start");
 		stopButton = new JButton("Stop");
 		addStaticCharges = new JButton("Dodaj ładunek statyczny");
 		addTestCharge = new JButton("Dodaj łądunek próbny");
 		newSimulationButton = new JButton("Nowa symulacja");
-		drawEquipotential = new JButton("Rysuj linie ekwipotencjalne");
-		startButton.setPreferredSize(new Dimension(250, 30));
-		stopButton.setPreferredSize(new Dimension(250, 30));
-		addStaticCharges.setPreferredSize(new Dimension(250, 30));
-		addTestCharge.setPreferredSize(new Dimension(250, 30));
-		newSimulationButton.setPreferredSize(new Dimension(250, 30));
-		drawEquipotential.setPreferredSize(new Dimension(250, 30));
+		drawEquipotential = new JButton("Rysuj linie ekwipotencjalne");*/
+		startButton = new JButton(mainWindow.resourceBundle.getString("Start"));
+		stopButton = new JButton(mainWindow.resourceBundle.getString("Stop"));
+		addStaticCharges = new JButton(mainWindow.resourceBundle.getString("Dodaj_ladunek_statyczny"));
+		addTestCharge = new JButton(mainWindow.resourceBundle.getString("Dodaj_ladunek_probny"));
+		newSimulationButton = new JButton(mainWindow.resourceBundle.getString("Nowa_symulacja"));
+		drawEquipotential = new JButton(mainWindow.resourceBundle.getString("Rysuj_linie_ekwipotencjalne"));
+		
+		startButton.setPreferredSize(new Dimension(290, 30));
+		stopButton.setPreferredSize(new Dimension(290, 30));
+		addStaticCharges.setPreferredSize(new Dimension(290, 30));
+		addTestCharge.setPreferredSize(new Dimension(290, 30));
+		newSimulationButton.setPreferredSize(new Dimension(290, 30));
+		drawEquipotential.setPreferredSize(new Dimension(290, 30));
 
 		valueStaticCharge = new JSlider(JSlider.HORIZONTAL, -10, 10, 1);
 		valueStaticCharge.setMajorTickSpacing(2);
-		valueStaticCharge.setName("Name");
-		valueStaticCharge.setToolTipText("vVV");
+		//valueStaticCharge.setName("Name");
+	//	valueStaticCharge.setToolTipText("vVV");
 		valueStaticCharge.setFocusable(true);
 
 		// valueStaticCharge.setVisible(true);
 
 		valueStaticCharge.setPaintLabels(true);
 		valueStaticCharge.setPaintTicks(true);
-		valueStaticCharge.setBorder(BorderFactory.createTitledBorder("Wartość ładunku statycznego "));
+		valueStaticCharge.setBorder(BorderFactory.createTitledBorder(mainWindow.resourceBundle.getString("Wartosc_ladunku_statycznego")));
+		//valueStaticCharge.setBorder(BorderFactory.createTitledBorder("Wartość ładunku statycznego "));
 		valueStaticCharge.setPreferredSize(new Dimension(320, 70));
 
 		speedTestCharge = new JSlider(-10, 10, 0);
@@ -86,7 +95,8 @@ public class OptionPanel extends JPanel implements ActionListener {
 		speedTestCharge.setPaintLabels(true);
 		speedTestCharge.setPaintTicks(true);
 		speedTestCharge.setPreferredSize(new Dimension(320, 70));
-		speedTestCharge.setBorder(BorderFactory.createTitledBorder("Prędkość początkowa ładunku próbnego  "));
+		speedTestCharge.setBorder(BorderFactory.createTitledBorder(mainWindow.resourceBundle.getString("Predkosc_poczatkowa_ladunku_probnego")));
+		//speedTestCharge.setBorder(BorderFactory.createTitledBorder("Prędkość początkowa ładunku próbnego  "));
 
 		startPanel = new JPanel();
 		stopPanel = new JPanel();
@@ -115,7 +125,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		add(stopPanel);
 		add(newSimulationPanel);
 		add(drawEquipotentialPanel);
-		setPreferredSize(new Dimension(350, mainWindow.HEIGHT));
+		setPreferredSize(new Dimension(390, mainWindow.HEIGHT));
 
 		startButton.addActionListener(this);
 		stopButton.addActionListener(this);
@@ -146,7 +156,7 @@ public class OptionPanel extends JPanel implements ActionListener {
 		if (e.getSource() == startButton) {
 			startSimulationBoolean = true;
 			mainWindow.movementClass.startSimulation();
-			
+
 		}
 		if (e.getSource() == stopButton) {
 			mainWindow.movementClass.stopSimulation();
@@ -162,10 +172,11 @@ public class OptionPanel extends JPanel implements ActionListener {
 				mainWindow.chartsPanel.seriesVx.clear();
 				mainWindow.chartsPanel.seriesVy.clear();
 				mainWindow.chartsPanel.seriesVt.clear();
-				startSimulationBoolean=false;
+				startSimulationBoolean = false;
+				drawEquipotentialBoolean=false;
 
 			}
-			startSimulationBoolean=false;
+			startSimulationBoolean = false;
 			mainWindow.simulationPanel.testCharge = null;
 			mainWindow.simulationPanel.staticChargeList.clear();
 			mainWindow.drawEquipotential.pixelList.clear();
@@ -181,10 +192,12 @@ public class OptionPanel extends JPanel implements ActionListener {
 
 		}
 		if (e.getSource() == drawEquipotential) {
+			drawEquipotentialBoolean=true;
 			ExecutorService exec = Executors.newFixedThreadPool(1);
 			exec.execute(mainWindow.drawEquipotential);
-
 			
+			// mainWindow.drawEquipotential.restart();
+
 		}
 
 	}

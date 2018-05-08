@@ -14,6 +14,7 @@ public class MovementClass {
 
 	public MovementClass(MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
+		
 
 	}
 
@@ -45,7 +46,7 @@ public class MovementClass {
 			ax += mainWindow.simulationPanel.staticChargeList.get(i).valueElectricCharge / (R(i) * R(i)) * Cos(i);
 
 		}
-		mainWindow.simulationPanel.testCharge.setAx(ax);
+		mainWindow.simulationPanel.testCharge.setAx(ax*0.000001);
 		
 		mainWindow.simulationPanel.testCharge.setVx(mainWindow.simulationPanel.testCharge.getVx() + mainWindow.simulationPanel.testCharge.getAx() * dt);
 		mainWindow.simulationPanel.testCharge.setX(mainWindow.simulationPanel.testCharge.getVx() * dt
@@ -55,7 +56,7 @@ public class MovementClass {
 		mainWindow.simulationPanel.repaint();
 		dt+=500;
 		
-		if(mainWindow.simulationPanel.testCharge.getX()<(-100) || mainWindow.simulationPanel.testCharge.getX()>(mainWindow.simulationPanel.getWidth()+100)){
+		if(mainWindow.simulationPanel.testCharge.getX()<(-500) || mainWindow.simulationPanel.testCharge.getX()>(mainWindow.simulationPanel.getWidth()+500)){
 			stopSimulation();
 		}
 
@@ -67,7 +68,7 @@ public class MovementClass {
 			ay += mainWindow.simulationPanel.staticChargeList.get(i).valueElectricCharge / (R(i) * R(i)) * Sin(i);
 
 		}
-		mainWindow.simulationPanel.testCharge.setAy(ay);
+		mainWindow.simulationPanel.testCharge.setAy(ay*0.000001);
 		
 		mainWindow.simulationPanel.testCharge.setVy(mainWindow.simulationPanel.testCharge.getVy() + mainWindow.simulationPanel.testCharge.getAy() * dt);
 		mainWindow.simulationPanel.testCharge.setY(mainWindow.simulationPanel.testCharge.getVy() * dt
@@ -76,7 +77,7 @@ public class MovementClass {
 
 		mainWindow.simulationPanel.repaint();
 		
-		if(mainWindow.simulationPanel.testCharge.getY()<(-100) || mainWindow.simulationPanel.testCharge.getY()>(mainWindow.simulationPanel.getHeight()+100)){
+		if(mainWindow.simulationPanel.testCharge.getY()<(-500) || mainWindow.simulationPanel.testCharge.getY()>(mainWindow.simulationPanel.getHeight()+500)){
 			stopSimulation();
 		}
 
@@ -102,7 +103,7 @@ public class MovementClass {
 
 		timer = new Timer(true);
 
-		timer.scheduleAtFixedRate(task, 100, 200);
+		timer.scheduleAtFixedRate(task, 100, 50);
 		System.out.println("Task run");
 	}
 

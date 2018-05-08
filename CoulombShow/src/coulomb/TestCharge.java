@@ -75,7 +75,7 @@ public class TestCharge {
 	
 	public void draw(Graphics2D g2d) {
 		
-		g2d.setColor(Color.BLACK);
+		g2d.setColor(Color.yellow);
 		g2d.fillOval((int)x, (int)y, 10, 10);
 
 	}

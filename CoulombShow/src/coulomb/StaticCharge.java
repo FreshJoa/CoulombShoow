@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.Random;
 
+import com.sun.org.glassfish.external.statistics.BoundaryStatistic;
+
 public class StaticCharge {
 	double xPos;
 	double yPos;
@@ -42,16 +44,19 @@ public class StaticCharge {
 		yPos=y;
 		valueElectricCharge=value;
 		Random rand=new Random();
-		color=new Color(rand.nextInt(256),rand.nextInt(256), rand.nextInt(256));
+		if(value>=0) {
+			color=new Color(120+rand.nextInt(130),0,0 );
+		}
+		else if(value<0){
+		color=new Color(0,0,120+rand.nextInt(130));
 		
-		
+		}
 	}
 	
 public void draw(Graphics2D g2d) {
 		
 		g2d.setColor(color);
-		g2d.fillOval((int)xPos, (int)yPos, 10*Math.abs(valueElectricCharge), 10*Math.abs(valueElectricCharge));
-
+		g2d.fillOval((int)(xPos-10*Math.abs(valueElectricCharge)/2), (int)(yPos-10*Math.abs(valueElectricCharge)/2), 10*Math.abs(valueElectricCharge), 10*Math.abs(valueElectricCharge));
 	}
 
 }

@@ -53,7 +53,8 @@ public class ChartsPanel extends JPanel  {
 		xAxis.setAutoRangeIncludesZero(false);
 		vxAxis.setAutoRangeIncludesZero(false);
 		XYPlot plotVx = new XYPlot(new XYSeriesCollection(seriesVx), xAxis, vxAxis, new XYLineAndShapeRenderer(true, false));
-		chartVx = new JFreeChart("Wykres zależności Vx(x)", JFreeChart.DEFAULT_TITLE_FONT, plotVx, false);
+		chartVx = new JFreeChart(mainWindow.resourceBundle.getString("Wykres_zaleznosci_Vx(x)"), JFreeChart.DEFAULT_TITLE_FONT, plotVx, false);
+		//chartVx = new JFreeChart("Wykres zależności Vx(x)", JFreeChart.DEFAULT_TITLE_FONT, plotVx, false);
 		chartPanelVx = new ChartPanel(chartVx);
 		
 		//Tworzę wykres Vy(y)
@@ -67,11 +68,13 @@ public class ChartsPanel extends JPanel  {
 		yAxis.setAutoRangeIncludesZero(false);
 		vyAxis.setAutoRangeIncludesZero(false);
 		XYPlot plotVy = new XYPlot(new XYSeriesCollection(seriesVy), yAxis, vyAxis, new XYLineAndShapeRenderer(true, false));
-		chartVy = new JFreeChart("Wykres zależności Vy(y)", JFreeChart.DEFAULT_TITLE_FONT, plotVy, false);
+		chartVy = new JFreeChart(mainWindow.resourceBundle.getString("Wykres_zaleznosci_Vy(y)"), JFreeChart.DEFAULT_TITLE_FONT, plotVy, false);
+		//chartVy = new JFreeChart("Wykres zależności Vy(y)", JFreeChart.DEFAULT_TITLE_FONT, plotVy, false);
 		chartPanelVy = new ChartPanel(chartVy);
 		
 		//Tworzę wykres V(t)
-		seriesVt.add(Math.sqrt(mainWindow.simulationPanel.testCharge.getVx()*mainWindow.simulationPanel.testCharge.getVx()+mainWindow.simulationPanel.testCharge.getVy()*mainWindow.simulationPanel.testCharge.getVy()), mainWindow.movementClass.dt);
+		
+		seriesVt.add( mainWindow.movementClass.dt,Math.sqrt(mainWindow.simulationPanel.testCharge.getVx()*mainWindow.simulationPanel.testCharge.getVx()+mainWindow.simulationPanel.testCharge.getVy()*mainWindow.simulationPanel.testCharge.getVy()));
 		XYSeriesCollection datasetVt = new XYSeriesCollection();
 		datasetVt.addSeries(seriesVt);
 		NumberAxis tAxis = new NumberAxis("t");
@@ -81,7 +84,8 @@ public class ChartsPanel extends JPanel  {
 		tAxis.setAutoRangeIncludesZero(false);
 		vAxis.setAutoRangeIncludesZero(false);
 		XYPlot plotVt = new XYPlot(new XYSeriesCollection(seriesVt), tAxis, vAxis, new XYLineAndShapeRenderer(true, false));
-		chartVt = new JFreeChart("Wykres zależności V(t)", JFreeChart.DEFAULT_TITLE_FONT, plotVt, false);
+		chartVt = new JFreeChart(mainWindow.resourceBundle.getString("Wykres_zaleznosci_V(t)"), JFreeChart.DEFAULT_TITLE_FONT, plotVt, false);
+		//chartVt = new JFreeChart(mainWindow.resourceBundle.getString("Wykres zależności V(t)"), JFreeChart.DEFAULT_TITLE_FONT, plotVt, false);
 		chartPanelVt = new ChartPanel(chartVt);
 		this.setLayout(new GridLayout(3, 1));
 		this.removeAll();

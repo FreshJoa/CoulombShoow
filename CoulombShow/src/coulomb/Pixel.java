@@ -41,13 +41,15 @@ public class Pixel {
 	public Pixel(int xx, int yy) {
 		x=xx;
 		y=yy;
-		color=Color.black;
+		//color=Color.black;
 	}
 	
 public void draw(Graphics2D g2d) {
 		
-		g2d.setColor(color);
+		//g2d.setColor(color);
+	if(color==Color.green) {
 		g2d.fillRect(x, y, 1, 1);
+	}
 
 	}
 
