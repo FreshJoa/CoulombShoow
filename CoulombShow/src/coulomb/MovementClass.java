@@ -5,7 +5,6 @@ import java.util.TimerTask;
 
 import javax.sound.midi.Soundbank;
 
-
 public class MovementClass {
 	MainWindow mainWindow;
 	int dt = 500;
@@ -14,7 +13,6 @@ public class MovementClass {
 
 	public MovementClass(MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
-		
 
 	}
 
@@ -46,17 +44,19 @@ public class MovementClass {
 			ax += mainWindow.simulationPanel.staticChargeList.get(i).valueElectricCharge / (R(i) * R(i)) * Cos(i);
 
 		}
-		mainWindow.simulationPanel.testCharge.setAx(ax*0.000001);
-		
-		mainWindow.simulationPanel.testCharge.setVx(mainWindow.simulationPanel.testCharge.getVx() + mainWindow.simulationPanel.testCharge.getAx() * dt);
+		mainWindow.simulationPanel.testCharge.setAx(ax * 0.000001);
+
+		mainWindow.simulationPanel.testCharge.setVx(
+				mainWindow.simulationPanel.testCharge.getVx() + mainWindow.simulationPanel.testCharge.getAx() * dt);
 		mainWindow.simulationPanel.testCharge.setX(mainWindow.simulationPanel.testCharge.getVx() * dt
-				+ mainWindow.simulationPanel.testCharge.getAx() * dt * dt
+				+ mainWindow.simulationPanel.testCharge.getAx() * dt * dt/2.0
 				+ mainWindow.simulationPanel.testCharge.getX());
 
 		mainWindow.simulationPanel.repaint();
-		dt+=500;
-		
-		if(mainWindow.simulationPanel.testCharge.getX()<(-500) || mainWindow.simulationPanel.testCharge.getX()>(mainWindow.simulationPanel.getWidth()+500)){
+		dt += 500;
+
+		if (mainWindow.simulationPanel.testCharge.getX() < (-500)
+				|| mainWindow.simulationPanel.testCharge.getX() > (mainWindow.simulationPanel.getWidth() + 500)) {
 			stopSimulation();
 		}
 
@@ -68,16 +68,18 @@ public class MovementClass {
 			ay += mainWindow.simulationPanel.staticChargeList.get(i).valueElectricCharge / (R(i) * R(i)) * Sin(i);
 
 		}
-		mainWindow.simulationPanel.testCharge.setAy(ay*0.000001);
-		
-		mainWindow.simulationPanel.testCharge.setVy(mainWindow.simulationPanel.testCharge.getVy() + mainWindow.simulationPanel.testCharge.getAy() * dt);
+		mainWindow.simulationPanel.testCharge.setAy(ay * 0.000001);
+
+		mainWindow.simulationPanel.testCharge.setVy(
+				mainWindow.simulationPanel.testCharge.getVy() + mainWindow.simulationPanel.testCharge.getAy() * dt);
 		mainWindow.simulationPanel.testCharge.setY(mainWindow.simulationPanel.testCharge.getVy() * dt
-				+ mainWindow.simulationPanel.testCharge.getAy() * dt * dt
+				+ mainWindow.simulationPanel.testCharge.getAy() * dt * dt/2.0
 				+ mainWindow.simulationPanel.testCharge.getY());
 
 		mainWindow.simulationPanel.repaint();
-		
-		if(mainWindow.simulationPanel.testCharge.getY()<(-500) || mainWindow.simulationPanel.testCharge.getY()>(mainWindow.simulationPanel.getHeight()+500)){
+
+		if (mainWindow.simulationPanel.testCharge.getY() < (-500)
+				|| mainWindow.simulationPanel.testCharge.getY() > (mainWindow.simulationPanel.getHeight() + 500)) {
 			stopSimulation();
 		}
 
@@ -90,14 +92,13 @@ public class MovementClass {
 			Ax();
 			Ay();
 			mainWindow.chartsPanel.createCharts();
-			//System.out.println(mainWindow.simulationPanel.testCharge.getX()+" "+ mainWindow.simulationPanel.testCharge.getVx());
 
 		}
 
 	}
 
 	public void startSimulation() {
-		dt=500;
+		dt = 500;
 
 		task = new MyTask();
 
@@ -107,8 +108,8 @@ public class MovementClass {
 		System.out.println("Task run");
 	}
 
-	public void stopSimulation(){
-		
+	public void stopSimulation() {
+
 		timer.cancel();
 		System.out.println("cancel");
 	}

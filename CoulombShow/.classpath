@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="/home/joanna/Pulpit/jfreechart-1.0.19/lib/jcommon-1.0.23.jar"/>
 	<classpathentry kind="lib" path="/home/joanna/Pulpit/jfreechart-1.0.19/lib/orsonpdf-1.6-eval.jar"/>
 	<classpathentry kind="lib" path="/home/joanna/Pulpit/Lab9/Lab9_OrsonPDF/LIB/orsonpdf-1.7.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/git/CoulombShoow/CoulombShow/Lib/poi-ooxml-3.9-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

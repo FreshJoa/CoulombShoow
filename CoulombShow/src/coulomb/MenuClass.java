@@ -13,6 +13,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -21,27 +22,25 @@ import com.orsonpdf.PDFDocument;
 import com.orsonpdf.PDFGraphics2D;
 import com.orsonpdf.Page;
 
-
-
 public class MenuClass extends JMenuBar implements ActionListener {
 	MainWindow mainWindow;
 	JMenu saveMenu;
 	JMenuItem saveDrawingEquipotential;
 	JMenuItem saveCharts;
-	
+
 	JMenu helpMenu;
 	JMenuItem helpItem;
 
 	public MenuClass(MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
-		
-		saveMenu = new JMenu("Zapisz");
-		saveDrawingEquipotential = new JMenuItem("Zapisz_linie_ekwipotencjalne");
-		saveCharts = new JMenuItem("Zapisz_wykresy");
-		
-		helpMenu=new JMenu("Pomoc");
-		helpItem=new JMenuItem("Pomoc");
-		
+
+		saveMenu = new JMenu(mainWindow.resourceBundle.getString("Zapisz"));
+		saveDrawingEquipotential = new JMenuItem(mainWindow.resourceBundle.getString("Zapisz_linie_ekwipotencjalne"));
+		saveCharts = new JMenuItem(mainWindow.resourceBundle.getString("Zapisz_wykresy"));
+
+		helpMenu = new JMenu(mainWindow.resourceBundle.getString("Pomoc"));
+		helpItem = new JMenuItem(mainWindow.resourceBundle.getString("Pomoc"));
+
 		saveDrawingEquipotential.addActionListener(this);
 		saveCharts.addActionListener(this);
 		helpItem.addActionListener(this);
@@ -49,7 +48,7 @@ public class MenuClass extends JMenuBar implements ActionListener {
 		saveMenu.add(saveDrawingEquipotential);
 		saveMenu.add(saveCharts);
 		helpMenu.add(helpItem);
-		
+
 		this.add(saveMenu);
 		this.add(helpMenu);
 
@@ -67,18 +66,17 @@ public class MenuClass extends JMenuBar implements ActionListener {
 
 		}
 		if (object == helpItem) {
-			HelpFrame help=new HelpFrame(mainWindow);
-			
+			HelpFrame help = new HelpFrame(mainWindow);
 
 		}
 
 	}
 
 	void saveDrawingEquipotential() {
-		if (mainWindow.optionPanel.drawEquipotentialBoolean == true) {
+		if (mainWindow.optionPanel.drawEquipotentialBoolean == true && mainWindow.drawEquipotential.pixelList !=null) {
 			JFileChooser chooser = new JFileChooser();
 
-			int returnVal = chooser.showDialog(null, "Wybierz");
+			int returnVal = chooser.showDialog(null, mainWindow.resourceBundle.getString("Wybierz"));
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				BufferedImage image = new BufferedImage(mainWindow.simulationPanel.getWidth(),
 						mainWindow.simulationPanel.getHeight(), BufferedImage.TYPE_INT_RGB);
@@ -93,6 +91,9 @@ public class MenuClass extends JMenuBar implements ActionListener {
 
 			}
 
+		} else {
+			JOptionPane.showMessageDialog(null, mainWindow.resourceBundle.getString("Nie_narysowano_linii"),
+					mainWindow.resourceBundle.getString("Narysuj_linie__ekwipotencjalne"), JOptionPane.WARNING_MESSAGE);
 		}
 	}
 
@@ -100,21 +101,21 @@ public class MenuClass extends JMenuBar implements ActionListener {
 		if (mainWindow.optionPanel.startSimulationBoolean == true) {
 			JFileChooser chooser = new JFileChooser();
 
-			int returnVal = chooser.showDialog(null, "Wybierz");
+			int returnVal = chooser.showDialog(null, mainWindow.resourceBundle.getString("Wybierz"));
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				PDFDocument pdfDoc = new PDFDocument();
-				pdfDoc.setTitle("Wykresy");
+				pdfDoc.setTitle(mainWindow.resourceBundle.getString("Wykresy"));
 
 				Page page1 = pdfDoc.createPage(new Rectangle(612, 468));
 				PDFGraphics2D g21 = page1.getGraphics2D();
 				g21.setRenderingHint(JFreeChart.KEY_SUPPRESS_SHADOW_GENERATION, true);
 				mainWindow.chartsPanel.chartVx.draw(g21, new Rectangle(0, 0, 612, 468));
-				
+
 				Page page2 = pdfDoc.createPage(new Rectangle(612, 468));
 				PDFGraphics2D g22 = page2.getGraphics2D();
 				g22.setRenderingHint(JFreeChart.KEY_SUPPRESS_SHADOW_GENERATION, true);
 				mainWindow.chartsPanel.chartVy.draw(g22, new Rectangle(0, 0, 612, 468));
-				
+
 				Page page3 = pdfDoc.createPage(new Rectangle(612, 468));
 				PDFGraphics2D g23 = page3.getGraphics2D();
 				g23.setRenderingHint(JFreeChart.KEY_SUPPRESS_SHADOW_GENERATION, true);
@@ -124,6 +125,9 @@ public class MenuClass extends JMenuBar implements ActionListener {
 
 			}
 
+		} else {
+			JOptionPane.showMessageDialog(null, mainWindow.resourceBundle.getString("Brak_wykresów"),
+					mainWindow.resourceBundle.getString("Uruchom_symulacje"), JOptionPane.WARNING_MESSAGE);
 		}
 
 	}

@@ -1,6 +1,5 @@
 package coulomb;
 
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GraphicsConfiguration;
@@ -18,10 +17,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-
 public class LanguageFrame extends JFrame {
 
-	MainWindow window;//referencja do głównej klasy
+	MainWindow window;// referencja do głównej klasy
 	JPanel labelPanel = new JPanel();
 	JLabel labelChoose = new JLabel("Choose the prefer language");
 	JPanel languageMenuPanel = new JPanel();
@@ -31,61 +29,52 @@ public class LanguageFrame extends JFrame {
 	int languageValue = 0;
 	ResourceBundle resource = null;
 
-	ItemListener ChooseLanguageValue = new ItemListener() {//wybór języka
+	ItemListener ChooseLanguageValue = new ItemListener() {// wybór języka
 
 		@Override
-		public void itemStateChanged(ItemEvent e) {//Wywoływane, gdy element został zaznaczony lub odznaczony przez użytkownika.
+		public void itemStateChanged(ItemEvent e) {// Wywoływane, gdy element został zaznaczony lub odznaczony przez
+													// użytkownika.
 			System.out.println(e.getItem());
-			if (e.getItem() == "Polish" ) {
+			if (e.getItem() == "Polish") {
 				languageValue = 0;
 				System.out.println("pol");
-			} 
-			else if (e.getItem() == "English") {
+			} else if (e.getItem() == "English") {
 				languageValue = 1;
 				System.out.println("ang");
-			} 
-			else
-			{
+			} else {
 				languageValue = 2;
 				System.out.println("germ");
 			}
 		}
 	};
+
 	ResourceBundle resourceBundle() {
-	
-		
-	
-		
-		if(languageValue==0) {
-			resource=ResourceBundle.getBundle("LabelsBundle", Locale.FRENCH);
+
+		if (languageValue == 0) {
+			resource = ResourceBundle.getBundle("LabelsBundle", Locale.FRENCH);
 		}
-		if(languageValue==1) {
-			resource=ResourceBundle.getBundle("LabelsBundle", Locale.ENGLISH);
+		if (languageValue == 1) {
+			resource = ResourceBundle.getBundle("LabelsBundle", Locale.ENGLISH);
 		}
-		if(languageValue==2) {
-			resource=ResourceBundle.getBundle("LabelsBundle", Locale.GERMAN);
+		if (languageValue == 2) {
+			resource = ResourceBundle.getBundle("LabelsBundle", Locale.GERMAN);
 		}
-		
-		
+
 		return resource;
 	}
-	
 
-	ActionListener ChooseLanguage = new ActionListener() {//otworzenie głównego okna z odpowiednim językiem
+	ActionListener ChooseLanguage = new ActionListener() {// otworzenie głównego okna z odpowiednim językiem
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			resource=resourceBundle();
+			resource = resourceBundle();
 			window = new MainWindow(resource);
 			setVisible(false);
-			
+
 		}
 
 	};
 
-	
-	
-	
 	public LanguageFrame(MainWindow WINDOW) throws HeadlessException {
 
 		setSize(400, 200);
@@ -100,27 +89,19 @@ public class LanguageFrame extends JFrame {
 		languageMenuPanel.add(choose);
 
 		comboBox.addItemListener(ChooseLanguageValue);
-		choose.addActionListener(ChooseLanguage);//otwiera główne okno
-		
+		choose.addActionListener(ChooseLanguage);// otwiera główne okno
 
-		window=WINDOW;	
+		window = WINDOW;
 
 		setLocationRelativeTo(null);
 		setVisible(true);
 		setTitle("Coulomb Show");
 	}
 
-
-
-	
-	
-
 	public LanguageFrame(GraphicsConfiguration gc) {
 		super(gc);
 		// TODO Auto-generated constructor stub
 	}
-
-	
 
 	public LanguageFrame(String title, GraphicsConfiguration gc) {
 		super(title, gc);

@@ -2,12 +2,14 @@ package coulomb;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import coulomb.MovementClass.MyTask;
 
 public class DrawEquipotential implements Runnable {
 	MainWindow mainWindow;
 	ArrayList<Pixel> pixelList = new ArrayList<>();
-	// int iterator = 0;
-	Thread drawEquipotential;
 
 	public DrawEquipotential(MainWindow mainWindow) {
 		this.mainWindow = mainWindow;
@@ -37,7 +39,7 @@ public class DrawEquipotential implements Runnable {
 				}
 				pixelList.get(iterator).setValueEquipotential(equipotential * 100);
 				iterator++;
-				// System.out.println(iterator);
+
 			}
 		}
 
@@ -76,8 +78,8 @@ public class DrawEquipotential implements Runnable {
 
 		for (double currentEquipotential = min; currentEquipotential < max; currentEquipotential += step) {
 			for (int i = 0; i < pixelList.size(); i++) {
-				if (Math.abs(pixelList.get(i).valueEquipotential) <= Math.abs(1.07 * currentEquipotential)
-						&& Math.abs(pixelList.get(i).valueEquipotential) >= Math.abs(0.97 * currentEquipotential)) {
+				if (Math.abs(pixelList.get(i).valueEquipotential) <= Math.abs(1.02 * currentEquipotential)
+						&& Math.abs(pixelList.get(i).valueEquipotential) >= Math.abs(0.98 * currentEquipotential)) {
 					pixelList.get(i).setColor(Color.green);
 				}
 
@@ -95,7 +97,5 @@ public class DrawEquipotential implements Runnable {
 		System.out.println("koniec");
 
 	}
-
-	
 
 }
