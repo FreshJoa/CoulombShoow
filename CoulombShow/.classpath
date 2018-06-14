@@ -10,5 +10,27 @@
 	<classpathentry kind="lib" path="/home/joanna/Pulpit/jfreechart-1.0.19/lib/orsonpdf-1.6-eval.jar"/>
 	<classpathentry kind="lib" path="/home/joanna/Pulpit/Lab9/Lab9_OrsonPDF/LIB/orsonpdf-1.7.jar"/>
 	<classpathentry kind="lib" path="/home/joanna/git/CoulombShoow/CoulombShow/Lib/poi-ooxml-3.9-sources.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/wca-workbook-assistant-master/lib/xmlbeans-2.3.0.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/wca-workbook-assistant-master/lib/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/wca-workbook-assistant-master/lib/poi-ooxml-schemas-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/wca-workbook-assistant-master/lib/poi-ooxml-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/wca-workbook-assistant-master/lib/poi-3.9-20121203.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/wca-workbook-assistant-master/lib/org.apache.sling.commons.json-2.0.6.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/wca-workbook-assistant-master/lib/log4j-1.2.13.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/wca-workbook-assistant-master/lib/junit-3.8.1.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/wca-workbook-assistant-master/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/wca-workbook-assistant-master/lib/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/wca-workbook-assistant-master/lib/commons-codec-1.5.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/poi-3.17/lib/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/poi-3.17/lib/junit-4.12.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/poi-3.17/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/poi-3.17/lib/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/poi-3.17/lib/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/poi-3.17/poi-scratchpad-3.17.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/poi-3.17/poi-ooxml-schemas-3.17.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/poi-3.17/poi-ooxml-3.17.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/poi-3.17/poi-excelant-3.17.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/poi-3.17/poi-examples-3.17.jar"/>
+	<classpathentry kind="lib" path="/home/joanna/Pulpit/poi-3.17/poi-3.17.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

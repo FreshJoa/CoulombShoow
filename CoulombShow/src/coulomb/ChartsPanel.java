@@ -2,6 +2,7 @@ package coulomb;
 
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -30,6 +31,10 @@ public class ChartsPanel extends JPanel {
 	ChartPanel chartPanelVx = null;
 	ChartPanel chartPanelVy = null;
 	ChartPanel chartPanelVt = null;
+	ArrayList<Double> vxList=new ArrayList<>();
+	ArrayList<Double> vyList=new ArrayList<>();
+	ArrayList<Double> vList=new ArrayList<>();
+	ArrayList<Double> tList=new ArrayList<>();
 
 	public ChartsPanel(MainWindow mainWindow) {
 		super();
@@ -39,7 +44,9 @@ public class ChartsPanel extends JPanel {
 
 	void createCharts() {
 		// Tworzę wykres Vx(x)
-		seriesVx.add(mainWindow.movementClass.dt, mainWindow.simulationPanel.testCharge.getVx());
+		seriesVx.add(mainWindow.movementClass.dt/1000, mainWindow.simulationPanel.testCharge.getVx()*10000);
+		vxList.add(mainWindow.simulationPanel.testCharge.getVx()*10000);
+		tList.add((double)( mainWindow.movementClass.dt/1000.0));
 		XYSeriesCollection datasetVx = new XYSeriesCollection();
 		datasetVx.addSeries(seriesVx);
 		NumberAxis xAxis = new NumberAxis("t");
@@ -50,12 +57,14 @@ public class ChartsPanel extends JPanel {
 		vxAxis.setAutoRangeIncludesZero(false);
 		XYPlot plotVx = new XYPlot(new XYSeriesCollection(seriesVx), xAxis, vxAxis,
 				new XYLineAndShapeRenderer(true, false));
-		chartVx = new JFreeChart(mainWindow.resourceBundle.getString("Wykres_zaleznosci_Vx(x)"),
+		chartVx = new JFreeChart(mainWindow.resourceBundle.getString("Wykres_zaleznosci_Vx(t)"),
 				JFreeChart.DEFAULT_TITLE_FONT, plotVx, false);
 		chartPanelVx = new ChartPanel(chartVx);
 
 		// Tworzę wykres Vy(y)
-		seriesVy.add(mainWindow.movementClass.dt, mainWindow.simulationPanel.testCharge.getVy());
+		seriesVy.add(mainWindow.movementClass.dt/1000.0, mainWindow.simulationPanel.testCharge.getVy()*10000);
+		vyList.add(mainWindow.simulationPanel.testCharge.getVy()*10000);
+		
 		XYSeriesCollection datasetVy = new XYSeriesCollection();
 		datasetVy.addSeries(seriesVy);
 		NumberAxis yAxis = new NumberAxis("t");
@@ -66,15 +75,19 @@ public class ChartsPanel extends JPanel {
 		vyAxis.setAutoRangeIncludesZero(false);
 		XYPlot plotVy = new XYPlot(new XYSeriesCollection(seriesVy), yAxis, vyAxis,
 				new XYLineAndShapeRenderer(true, false));
-		chartVy = new JFreeChart(mainWindow.resourceBundle.getString("Wykres_zaleznosci_Vy(y)"),
+		chartVy = new JFreeChart(mainWindow.resourceBundle.getString("Wykres_zaleznosci_Vy(t)"),
 				JFreeChart.DEFAULT_TITLE_FONT, plotVy, false);
 		chartPanelVy = new ChartPanel(chartVy);
 
 		// Tworzę wykres V(t)
 
 		seriesVt.add(mainWindow.movementClass.dt,
-				Math.sqrt(mainWindow.simulationPanel.testCharge.getVx() * mainWindow.simulationPanel.testCharge.getVx()
-						+ mainWindow.simulationPanel.testCharge.getVy()
+				Math.sqrt(mainWindow.simulationPanel.testCharge.getVx()*100000000 * mainWindow.simulationPanel.testCharge.getVx()
+						+ mainWindow.simulationPanel.testCharge.getVy()*100000000
+								* mainWindow.simulationPanel.testCharge.getVy()));
+		
+		vList.add(Math.sqrt(mainWindow.simulationPanel.testCharge.getVx() *100000000* mainWindow.simulationPanel.testCharge.getVx()
+						+ mainWindow.simulationPanel.testCharge.getVy()*100000000
 								* mainWindow.simulationPanel.testCharge.getVy()));
 		XYSeriesCollection datasetVt = new XYSeriesCollection();
 		datasetVt.addSeries(seriesVt);

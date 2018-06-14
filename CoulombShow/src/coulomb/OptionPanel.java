@@ -155,10 +155,25 @@ public class OptionPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == startButton) {
-			if (mainWindow.simulationPanel.testCharge != null) {
+			if(startSimulationBoolean==true && mainWindow.simulationPanel.testCharge !=null) {
+				mainWindow.chartsPanel.seriesVx.clear();
+				mainWindow.chartsPanel.seriesVy.clear();
+				mainWindow.chartsPanel.seriesVt.clear();
+				
+				mainWindow.chartsPanel.vList.clear();
+				mainWindow.chartsPanel.vyList.clear();
+				mainWindow.chartsPanel.vxList.clear();
+				mainWindow.chartsPanel.tList.clear();
+				
+				mainWindow.movementClass.startSimulation();
+				
+				
+			}
+			if (startSimulationBoolean==false && mainWindow.simulationPanel.testCharge != null) {
 				startSimulationBoolean = true;
 				mainWindow.movementClass.startSimulation();
-			} else {
+			} 
+			if(mainWindow.simulationPanel.testCharge== null){
 				JOptionPane.showMessageDialog(null, mainWindow.resourceBundle.getString("Dodaj_ladunek_probny_do_symulacji"),
 						"Error",
 						JOptionPane.WARNING_MESSAGE);
@@ -181,6 +196,10 @@ public class OptionPanel extends JPanel implements ActionListener {
 				mainWindow.chartsPanel.seriesVt.clear();
 				startSimulationBoolean = false;
 				drawEquipotentialBoolean = false;
+				mainWindow.chartsPanel.vList.clear();
+				mainWindow.chartsPanel.vyList.clear();
+				mainWindow.chartsPanel.vxList.clear();
+				mainWindow.chartsPanel.tList.clear();
 
 			}
 			startSimulationBoolean = false;

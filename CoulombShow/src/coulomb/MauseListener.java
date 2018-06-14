@@ -80,9 +80,9 @@ public class MauseListener implements MouseListener, MouseMotionListener {
 				&& mainWindow.optionPanel.speedTestCharge.getValue() !=0) {
 			R=Math.sqrt((e.getX() - simulationPanel.testCharge.getX())*(e.getX() - simulationPanel.testCharge.getX())+(e.getY() - simulationPanel.testCharge.getY())*(e.getY() - simulationPanel.testCharge.getY()));
 			
-			simulationPanel.testCharge.setVx((e.getX() - simulationPanel.testCharge.getX())/R * 0.000001
+			simulationPanel.testCharge.setVx((e.getX() - simulationPanel.testCharge.getX())/R * 0.0001
 					* mainWindow.optionPanel.speedTestCharge.getValue());
-			simulationPanel.testCharge.setVy((e.getY() - simulationPanel.testCharge.getY())/R * 0.000001
+			simulationPanel.testCharge.setVy((e.getY() - simulationPanel.testCharge.getY())/R * 0.0001
 					* mainWindow.optionPanel.speedTestCharge.getValue());
 			simulationPanel.lineWithArrow=null;
 			System.out.println("Vx " + simulationPanel.testCharge.getVx());

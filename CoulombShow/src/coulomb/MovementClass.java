@@ -44,7 +44,7 @@ public class MovementClass {
 			ax += mainWindow.simulationPanel.staticChargeList.get(i).valueElectricCharge / (R(i) * R(i)) * Cos(i);
 
 		}
-		mainWindow.simulationPanel.testCharge.setAx(ax * 0.000001);
+		mainWindow.simulationPanel.testCharge.setAx(ax * 0.00001);
 
 		mainWindow.simulationPanel.testCharge.setVx(
 				mainWindow.simulationPanel.testCharge.getVx() + mainWindow.simulationPanel.testCharge.getAx() * dt);
@@ -68,7 +68,7 @@ public class MovementClass {
 			ay += mainWindow.simulationPanel.staticChargeList.get(i).valueElectricCharge / (R(i) * R(i)) * Sin(i);
 
 		}
-		mainWindow.simulationPanel.testCharge.setAy(ay * 0.000001);
+		mainWindow.simulationPanel.testCharge.setAy(ay * 0.00001);
 
 		mainWindow.simulationPanel.testCharge.setVy(
 				mainWindow.simulationPanel.testCharge.getVy() + mainWindow.simulationPanel.testCharge.getAy() * dt);
